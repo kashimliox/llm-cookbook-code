@@ -186,7 +186,7 @@ print(response)
 
 # display(HTML(response))
 
-file = open("test.html", "w",encoding="utf-8")
+file = open("test.html", "w", encoding="utf-8")
 file.write(response)
 file.close()
 import webbrowser

@@ -20,7 +20,7 @@ def get_completion(prompt):
     completion = client.chat.completions.create(
         model="qwen-max",  # 模型列表：https://help.aliyun.com/zh/model-studio/getting-started/models
         messages=[
-            {'role': 'system', 'content': 'You are a helpful assistant.'},
+            {'role': 'system', 'content': 'You are a helpful assistant.'},#role 后面可以考虑使用传入角色
             {'role': 'user', 'content': prompt}
         ]
     )
