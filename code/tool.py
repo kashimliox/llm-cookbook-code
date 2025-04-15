@@ -114,7 +114,7 @@ temperature=0):
         temperature=temperature,
     )
 
-    # print(completion)
+    print(completion)
     return completion.choices[0].message.content
 
 
@@ -132,3 +132,22 @@ temperature=0):
 #     )
 # #     print(str(response.choices[0].message))
 #     return response.choices[0].message["content"]
+
+
+
+def make_file(response,file_type="text"):
+    if file_type=="text":
+        file = open("test.txt", "w", encoding="utf-8")
+    if file_type=="html":
+        file = open("test.html", "w", encoding="utf-8")
+    if file_type=="markdown":
+        file = open("test.md", "w", encoding="utf-8")
+    else:
+        file = open("test.txt", "w", encoding="utf-8")
+    file.write(response)
+    file.close()
+
+    # 打开当前目录下的index.html文件
+    url = file.name
+    # 调用系统默认的打开html文件的方式，如果设置为记事本，则会用记事本打开T_T
+    webbrowser.open(url)
