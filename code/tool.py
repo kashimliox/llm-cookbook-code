@@ -9,6 +9,11 @@ def get_openai_key():
     _ = load_dotenv(find_dotenv())
     return os.environ['DASHSCOPE_API_KEY']
 
+def get_openai_key_gpt():
+    _ = load_dotenv(find_dotenv())
+    return os.environ['OPENAI_API_KEY']
+
+
 
 
 def get_completion(prompt):
@@ -92,3 +97,38 @@ def get_completion_with_temperature(prompt,temperature):
 
     # print(completion)
     return completion.choices[0].message.content
+
+
+
+def get_completion_from_messages(messages, model="qwen-max",
+temperature=0):
+    client = OpenAI(
+        # 若没有配置环境变量，请用百炼API Key将下行替换为：api_key="sk-xxx",
+        api_key=get_openai_key(),  # 如何获取API Key：https://help.aliyun.com/zh/model-studio/developer-reference/get-api-key
+        base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
+    )
+
+    completion = client.chat.completions.create(
+        model="qwen-max",  # 模型列表：https://help.aliyun.com/zh/model-studio/getting-started/models
+        messages=messages,
+        temperature=temperature,
+    )
+
+    # print(completion)
+    return completion.choices[0].message.content
+
+
+# def get_completion_from_messages_gpt(messages, model="gpt-3.5-turbo",
+# temperature=0):
+#     openai = OpenAI(
+#         # 若没有配置环境变量，请用百炼API Key将下行替换为：api_key="sk-xxx",
+#         api_key=get_openai_key(),  # 如何获取API Key：https://help.aliyun.com/zh/model-studio/developer-reference/get-api-key
+#         base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
+#     )
+#     response = openai.ChatCompletion.create(
+#         model=model,
+#         messages=messages,
+#         temperature=temperature, # 控制模型输出的随机程度
+#     )
+# #     print(str(response.choices[0].message))
+#     return response.choices[0].message["content"]
