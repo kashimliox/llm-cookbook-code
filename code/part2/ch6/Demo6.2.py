@@ -23,7 +23,7 @@ def get_products_by_category(category):
 # 读取产品信息
 with open("products_zh.json", "r", encoding='utf-8') as file:
     products = json.load(file)
-print(products)
+# print(products)
 # 将列表转换为字典
 products = {product["名称"]: product for product in products}
 # print(products)
